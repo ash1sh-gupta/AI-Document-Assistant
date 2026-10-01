@@ -143,5 +143,4 @@ git push -u origin main
 *   Support for image files (OCR).
 *   Add a chat interface to ask specific questions about the document.
 
-## Author
-[Your Name] - Beginner Java Developer
+
