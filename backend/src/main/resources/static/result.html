@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - AI Document Assistant</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Document Assistant</h1>
+            <a href="index.html" class="btn secondary-btn back-btn">← Back to Dashboard</a>
+        </header>
+
+        <main>
+            <div class="document-info">
+                <h2 id="doc-title">Document: Loading...</h2>
+            </div>
+
+            <div class="ai-actions">
+                <button class="btn action-btn" onclick="requestAi('summarize')">Summarize</button>
+                <button class="btn action-btn" onclick="requestAi('key-points')">Key Points</button>
+                <button class="btn action-btn" onclick="requestAi('explain')">Simple Explanation</button>
+                <button class="btn action-btn" onclick="requestAi('topics')">Important Topics</button>
+            </div>
+
+            <div id="ai-loading" class="hidden loading">
+                <div class="spinner"></div>
+                <p>AI is analyzing your document...</p>
+            </div>
+
+            <div id="ai-error" class="hidden error">
+                <!-- Error messages -->
+            </div>
+
+            <div id="result-area" class="result-card hidden">
+                <div class="result-header">
+                    <h3 id="result-title">AI Result</h3>
+                    <div class="result-actions">
+                        <button class="btn icon-btn" onclick="copyResult()">Copy</button>
+                        <button class="btn icon-btn" onclick="downloadResult()">Download</button>
+                    </div>
+                </div>
+                <div class="result-content" id="result-content">
+                    <!-- AI response goes here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Load document details and set up page
+        window.onload = () => {
+            const docId = new URLSearchParams(window.location.search).get('id');
+            if (docId) {
+                fetchDocument(docId);
+            } else {
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+</body>
+</html>
